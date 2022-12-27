@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.1 (Python 3.9.9 on win32)" generated="20221227 09:41:40.066" rpa="false" schemaversion="3">
+<suite id="s1" name="Get" source="C:\qaninja\buger-eats-partner-api-tests\tests\get.robot">
+<test id="s1-t1" name="Should return a partner list" line="7">
+<kw name="GET Partners" library="services">
+<var>${response}</var>
+<kw name="GET" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${BASE_URL}</arg>
+<arg>headers=${HEADERS}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a GET request.</doc>
+<msg timestamp="20221227 09:41:40.605" level="INFO">GET Request : url=http://localhost:3333/partners 
+ path_url=/partners 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'auth_user': 'qa', 'auth_password': 'ninja'} 
+ body=None 
+ </msg>
+<msg timestamp="20221227 09:41:40.605" level="INFO">GET Response : url=http://localhost:3333/partners 
+ status=200, reason=OK 
+ headers={'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'Authorization,auth_user,auth_password', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '476', 'ETag': 'W/"1dc-UcO8hj7LEAF5Y2tcB6cfNide6HY"', 'Date': 'Tue, 27 Dec 2022 12:41:40 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body=[{"_id":"63aae7f1276967def7e4d48f","name":"Adega do alemão","email":"contato@alemao.com.br","whatsapp":"21999999999","business":"Conveniência","active":false,"created_at":"2022-12-27T12:41:21.800Z","updated_at":"2022-12-27T12:41:21.800Z"},{"_id":"63aae7ee276967def7e4d48d","name":"Pizzas Papito","email":"contato@papito.com.br","whatsapp":"11999999999","business":"Restaurante","active":false,"created_at":"2022-12-27T12:41:18.777Z","updated_at":"2022-12-27T12:41:18.777Z"}] 
+ </msg>
+<msg timestamp="20221227 09:41:40.605" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221227 09:41:40.461" endtime="20221227 09:41:40.605"/>
+</kw>
+<msg timestamp="20221227 09:41:40.605" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221227 09:41:40.461" endtime="20221227 09:41:40.605"/>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>200</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20221227 09:41:40.605" endtime="20221227 09:41:40.605"/>
+</kw>
+<kw name="Get Length" library="BuiltIn">
+<var>${size}</var>
+<arg>${response.json()}</arg>
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<msg timestamp="20221227 09:41:40.611" level="INFO">Length is 2</msg>
+<msg timestamp="20221227 09:41:40.612" level="INFO">${size} = 2</msg>
+<status status="PASS" starttime="20221227 09:41:40.610" endtime="20221227 09:41:40.612"/>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<arg>${size} &gt; 0</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" starttime="20221227 09:41:40.612" endtime="20221227 09:41:40.612"/>
+</kw>
+<status status="PASS" starttime="20221227 09:41:40.454" endtime="20221227 09:41:40.615"/>
+</test>
+<doc>GET /partners</doc>
+<status status="PASS" starttime="20221227 09:41:40.069" endtime="20221227 09:41:40.619"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Get">Get</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
