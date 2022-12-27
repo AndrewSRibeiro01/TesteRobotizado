@@ -21,7 +21,7 @@ Should return a partner list
 
 Should search partner by name
 
-    ${response}    Serach Partner    Gordão
+    ${response}    Search Partner    Gordão
     Status Should Be    200 
 
     ${size}    Get Length    ${response.json()}
