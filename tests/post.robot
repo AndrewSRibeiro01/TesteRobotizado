@@ -1,9 +1,9 @@
-*Settings*
+*** Settings ***
 Documentation           POST /partners
 
 Resource    ${EXECDIR}/resources/base.robot
 
-*Test Cases*
+*** Test Cases ***
 Should create a new partner
 
     ${partner}          Factory New Partner

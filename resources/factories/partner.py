@@ -7,6 +7,14 @@ def factory_404_partner():
     }
     return partner
 
+def factory_remove_partner():
+    partner = {
+        'name': 'Adega do Pipizinho',
+        'email': 'contato@pipizinho.com.br',
+        'whatsapp': '11999999999',
+        'business': 'Conveniência'
+    }
+    return partner
 
 def factory_enable_partner():
     partner = {
@@ -17,6 +25,14 @@ def factory_enable_partner():
     }
     return partner
 
+def factory_disable_partner():
+    partner = {
+        'name': 'Mercado Noite',
+        'email': 'contato@noite.com.br',
+        'whatsapp': '11999999999',
+        'business': 'Supermercado'
+    }
+    return partner
 
 def factory_new_partner():
     partner = {

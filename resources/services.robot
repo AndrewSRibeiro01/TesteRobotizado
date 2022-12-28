@@ -45,3 +45,21 @@ Enable Partner
     ...                    expected_status=any
 
     [return]       ${response}
+
+Disable Partner
+    [Arguments]    ${partner_id}
+
+   ${response}             PUT     ${BASE_URL}/${partner_id}/disable
+    ...                    headers=${HEADERS}
+    ...                    expected_status=any
+
+    [return]       ${response}
+    
+DELETE Partner
+    [Arguments]    ${partner_id}
+
+   ${response}             DELETE     ${BASE_URL}/${partner_id}
+    ...                    headers=${HEADERS}
+    ...                    expected_status=any
+
+    [return]       ${response}

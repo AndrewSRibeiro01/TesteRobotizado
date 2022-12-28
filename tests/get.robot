@@ -1,11 +1,11 @@
-*Settings*
+*** Settings ***
 Documentation           GET /partners
 
 Resource    ${EXECDIR}/resources/base.robot
 
 Suite Setup    Create Partner List
 
-*Test Cases*
+*** Test Cases ***
 Should return a partner list
 
     ${response}    GET Partners

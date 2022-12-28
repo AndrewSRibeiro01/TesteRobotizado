@@ -1,7 +1,7 @@
-*Settings*
+*** Settings ***
 Documentation    Helpers
 
-*Keywords*  
+*** Keywords ***  
 Create a new partner
     [Arguments]    ${partner}
 
