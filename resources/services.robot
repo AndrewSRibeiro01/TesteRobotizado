@@ -36,3 +36,12 @@ Search Partner
     ...                    expected_status=any
 
     [return]       ${response}
+
+Enable Partner
+    [Arguments]    ${partner_id}
+
+   ${response}             PUT     ${BASE_URL}/${partner_id}/enable
+    ...                    headers=${HEADERS}
+    ...                    expected_status=any
+
+    [return]       ${response}

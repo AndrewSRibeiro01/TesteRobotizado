@@ -1,4 +1,20 @@
+def factory_404_partner():
+    partner = {
+        'name': 'Franqueto',
+        'email': 'contato@Franqueto.com.br',
+        'whatsapp': '11999999999',
+        'business': 'Restaurante'
+    }
+    return partner
 
+def factory_enable_partner():
+    partner = {
+        'name': 'Doceria do Alemão',
+        'email': 'contato@doceriaalm.com.br',
+        'whatsapp': '11999999999',
+        'business': 'Conveniência'
+    }
+    return partner
 
 def factory_new_partner():
     partner = {
