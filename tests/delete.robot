@@ -14,7 +14,7 @@ Should remove a partner
 
 Should return 404 on remove partner
 
-    ${partner}       Factory Remove Partner
+    ${partner}       Factory 404 Partner
     ${partner_id}    Create a new partner    ${partner}
     Remove Partner By Name    ${partner}[name]
 
