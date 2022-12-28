@@ -7,6 +7,7 @@ def factory_404_partner():
     }
     return partner
 
+
 def factory_enable_partner():
     partner = {
         'name': 'Doceria do Alemão',
@@ -15,6 +16,7 @@ def factory_enable_partner():
         'business': 'Conveniência'
     }
     return partner
+
 
 def factory_new_partner():
     partner = {

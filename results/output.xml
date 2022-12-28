@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.1 (Python 3.9.9 on win32)" generated="20221228 14:08:29.894" rpa="false" schemaversion="3">
+<suite id="s1" name="Buger-Eats-Partner-Api-Tests" source="C:\qaninja\buger-eats-partner-api-tests">
+<suite id="s1-s1" name="Tests" source="C:\qaninja\buger-eats-partner-api-tests\tests">
+<suite id="s1-s1-s1" name="Post" source="C:\qaninja\buger-eats-partner-api-tests\tests\post.robot">
+<test id="s1-s1-s1-t1" name="Should return duplicate company name" line="19">
+<kw name="Factory Dup Name" library="partner">
+<var>${partner}</var>
+<msg timestamp="20221228 14:08:30.209" level="INFO">${partner} = {'name': 'Adega do alemão', 'email': 'contato@alemao.com.br', 'whatsapp': '21999999999', 'business': 'Conveniência'}</msg>
+<status status="PASS" starttime="20221228 14:08:30.208" endtime="20221228 14:08:30.209"/>
+</kw>
+<kw name="Create a new partner" library="helpers">
+<arg>${partner}</arg>
+<kw name="Remove Partner By Name" library="database">
+<arg>${partner}[name]</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${filter}</var>
+<arg>name=${partner_name}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20221228 14:08:30.212" level="INFO">${filter} = {'name': 'Adega do alemão'}</msg>
+<status status="PASS" starttime="20221228 14:08:30.212" endtime="20221228 14:08:30.213"/>
+</kw>
+<kw name="Delete One" library="RobotMongoDBLibrary.Delete">
+<arg>${MONGO_URI}</arg>
+<arg>${filter}</arg>
+<status status="PASS" starttime="20221228 14:08:30.214" endtime="20221228 14:08:31.576"/>
+</kw>
+<status status="PASS" starttime="20221228 14:08:30.211" endtime="20221228 14:08:31.579"/>
+</kw>
+<kw name="POST Partner" library="services">
+<var>${response}</var>
+<arg>${partner}</arg>
+<kw name="POST" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${BASE_URL}</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${HEADERS}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request.</doc>
+<msg timestamp="20221228 14:08:31.751" level="INFO">POST Request : url=http://localhost:3333/partners 
+ path_url=/partners 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'auth_user': 'qa', 'auth_password': 'ninja', 'Content-Length': '126'} 
+ body=b'{"name": "Adega do alem\\u00e3o", "email": "contato@alemao.com.br", "whatsapp": "21999999999", "business": "Conveni\\u00eancia"}' 
+ </msg>
+<msg timestamp="20221228 14:08:31.752" level="INFO">POST Response : url=http://localhost:3333/partners 
+ status=409, reason=Conflict 
+ headers={'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'Authorization,auth_user,auth_password', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '29', 'ETag': 'W/"1d-KaYMAApfZd+Hsi4sqiDWKxrzBQU"', 'Date': 'Wed, 28 Dec 2022 17:08:31 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={"message":"Duplicate email"} 
+ </msg>
+<msg timestamp="20221228 14:08:31.753" level="INFO">${response} = &lt;Response [409]&gt;</msg>
+<status status="PASS" starttime="20221228 14:08:31.586" endtime="20221228 14:08:31.757"/>
+</kw>
+<msg timestamp="20221228 14:08:31.759" level="INFO">${response} = &lt;Response [409]&gt;</msg>
+<status status="PASS" starttime="20221228 14:08:31.581" endtime="20221228 14:08:31.760"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${partner_id}</var>
+<arg>${response.json()}[partner_id]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20221228 14:08:31.763" level="FAIL">Dictionary '${response.json()}' has no key 'partner_id'.</msg>
+<status status="FAIL" starttime="20221228 14:08:31.760" endtime="20221228 14:08:31.765"/>
+</kw>
+<status status="FAIL" starttime="20221228 14:08:30.210" endtime="20221228 14:08:31.766"/>
+</kw>
+<kw name="POST Partner" library="services">
+<var>${response}</var>
+<arg>${partner}</arg>
+<status status="NOT RUN" starttime="20221228 14:08:31.770" endtime="20221228 14:08:31.771"/>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>409</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="NOT RUN" starttime="20221228 14:08:31.772" endtime="20221228 14:08:31.772"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${response.json()}[message]</arg>
+<arg>Duplicate company name</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221228 14:08:31.773" endtime="20221228 14:08:31.773"/>
+</kw>
+<tag>bugs</tag>
+<status status="FAIL" starttime="20221228 14:08:30.206" endtime="20221228 14:08:31.774">Dictionary '${response.json()}' has no key 'partner_id'.</status>
+</test>
+<doc>POST /partners</doc>
+<status status="FAIL" starttime="20221228 14:08:29.929" endtime="20221228 14:08:31.779"/>
+</suite>
+<status status="FAIL" starttime="20221228 14:08:29.925" endtime="20221228 14:08:31.784"/>
+</suite>
+<status status="FAIL" starttime="20221228 14:08:29.897" endtime="20221228 14:08:31.787"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="0" fail="1" skip="0">bugs</stat>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Buger-Eats-Partner-Api-Tests">Buger-Eats-Partner-Api-Tests</stat>
+<stat pass="0" fail="1" skip="0" id="s1-s1" name="Tests">Buger-Eats-Partner-Api-Tests.Tests</stat>
+<stat pass="0" fail="1" skip="0" id="s1-s1-s1" name="Post">Buger-Eats-Partner-Api-Tests.Tests.Post</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

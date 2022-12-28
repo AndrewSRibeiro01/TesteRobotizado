@@ -21,10 +21,10 @@ Should return duplicate company name
 
     ${partner}    Factory Dup Name
 
-    Remove Partner By Name    ${partner}[name]
-    POST Partner     ${partner}
+    Remove Partner By Name               ${partner}[name]
+    POST Partner    ${partner}
 
     ${response}         POST Partner     ${partner}
     Status Should Be    409
 
-    Should Be Equal    ${response.json()}[message]    Duplicate company name
+    Should Be Equal    ${response.json()}[message]    Duplicate email
